@@ -1,0 +1,19 @@
+version: "3.8"
+services:
+  sona-react:
+    build:
+      target: build
+      dockerfile: Dockerfile
+      context: .
+    command: npm run start
+    volumes:
+      - ./:/app
+      - /app/node_modules
+    environment:
+      WATCHPACK_POLLING: "true"
+      REACT_APP_NFT_CONTRACT_NAME: contract-nft.testnet
+      REACT_APP_NFT_MARKETPLACE_CONTRACT_NAME: market.sonaapp.testnet
+      REACT_APP_GRAPHQL_API_URL: http://localhost:3000/graphql
+      NODE_ENV: development
+    ports:
+      - "3001:3001"
